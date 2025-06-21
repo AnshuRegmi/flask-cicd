@@ -10,7 +10,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'docker run --rm -v $PWD:/app -w /app python:3.9-slim python -m unittest test_app.py'
+                sh 'docker run --rm -v $PWD:/app -w /app python:3.9-slim sh -c "pip install -r requirements.txt && python -m unittest test_app.py"'
             }
         }
 
@@ -27,6 +27,6 @@ pipeline {
                 docker run -d -p 5000:5000 --name flask-cicd flask-cicd
                 '''
             }
-        }
-    }
+        }
+    }
 }
