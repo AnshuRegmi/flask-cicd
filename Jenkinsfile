@@ -4,13 +4,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/AnshuRegmi/flask-cicd.git'
+                git branch: 'main', url: 'https://github.com/AnshuRegmi/flask-cicd.git'
             }
         }
 
         stage('Test') {
             steps {
-                // Run tests inside official Python Docker container
                 sh 'docker run --rm -v $PWD:/app -w /app python:3.9-slim python -m unittest test_app.py'
             }
         }
