@@ -23,7 +23,6 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                // Stop and remove existing container if any, then run new one
                 sh '''
                 docker rm -f flask-cicd || true
                 docker run -d -p 5000:5000 --name flask-cicd flask-cicd
